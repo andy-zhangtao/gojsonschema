@@ -22,11 +22,19 @@ import (
 	"errors"
 )
 
+func ParseJsonBytes(name string, jsons []byte)(map[string]GOStruct, map[string]string, error){
+	return parseJson(name, string(jsons))
+}
+
+func ParseJson(name, jsons string) (map[string]GOStruct, map[string]string, error){
+	return parseJson(name, jsons)
+}
+
 // ParseJson 解析Json字符串, 转换成GoJsonSchema可以理解的数据结构
 // 返回两个MAP.
 // map[string]GOStruct  保存解析后的Schema结构体, 结构体名称和包含的属性,属性如果是Object，则需要通过属性名在第二个map中查询对应的结构体名称
 // map[string]string 保存每个object所对应的结构体名称
-func ParseJson(name, jsons string) (map[string]GOStruct, map[string]string, error) {
+func parseJson(name, jsons string) (map[string]GOStruct, map[string]string, error) {
 	var gjson GOJSON
 	mapStruct := make(map[string]GOStruct)
 
