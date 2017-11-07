@@ -29,6 +29,8 @@ func generate(gos parse.GOStruct, mapTag map[string]string) string {
 			data += "[]" + gos.Name + "_" + props.Name
 		} else if props.Vtype == "number" {
 			data += "int"
+		} else if props.Vtype == "boolean" {
+			data += "bool"
 		} else {
 			data += strings.ToLower(props.Vtype)
 		}
